@@ -13,7 +13,7 @@ function authMiddleware(req, res, next) {
   }
 
   if (!token) {
-    res.status(403).json({message:"Please login"})
+    return res.status(403).json({message:"Please login"})
     //next();
   }
 
@@ -23,6 +23,7 @@ function authMiddleware(req, res, next) {
     req.user = data;
   } catch {
     console.log("Invalid token");
+    return res.status(401).json({ message: "Invalid or expired token" });
     
   }
 

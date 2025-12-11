@@ -14,6 +14,7 @@ projectRouter.use(authMiddleware)
 projectRouter.get('/',async(req,res)=>{
     try{
         const userProjects=await Project.find({user:req.user._id})
+        console.log(req.user)
         res.json(userProjects)
 
     }catch(error){
